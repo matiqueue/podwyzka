@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nagroda</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #f0f0f0;
+      }
+
+      .container {
+        text-align: center;
+      }
+
+      video {
+        display: none;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        max-width: 100%;
+        max-height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Brawo! Podniesiono Twoją wypłatę o <span id="salaryValue"></span></h1>
+      <button id="confirmBtn">Potwierdź podwyżkę</button>
+    </div>
+    <video id="videoPlayer">
+      <source src="never-gonna.mp4" type="video/mp4" />
+      Twoja przeglądarka nie obsługuje odtwarzacza wideo.
+    </video>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const salaryValue = new URLSearchParams(window.location.search).get(
+          "salary"
+        );
+        const salaryValueElement = document.getElementById("salaryValue");
+        const confirmBtn = document.getElementById("confirmBtn");
+        const videoPlayer = document.getElementById("videoPlayer");
+
+        salaryValueElement.textContent = salaryValue;
+
+        confirmBtn.addEventListener("click", function () {
+          videoPlayer.style.display = "block";
+          videoPlayer.play();
+        });
+      });
+    </script>
+  </body>
+</html>

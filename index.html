@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chcesz podwyżkę?</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background-color: #f0f0f0;
+      }
+
+      .container {
+        text-align: center;
+      }
+
+      .buttons {
+        margin-top: 20px;
+      }
+
+      button {
+        padding: 10px 20px;
+        font-size: 16px;
+        margin: 0 10px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Chcesz podwyżkę?</h1>
+      <div class="buttons">
+        <button id="yesButton">Tak</button>
+        <button id="noButton">Nie</button>
+      </div>
+    </div>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const yesButton = document.getElementById("yesButton");
+        const noButton = document.getElementById("noButton");
+
+        // Losowy wybór skryptu
+        const scripts = [script1, script2, script3];
+        const randomScript =
+          scripts[Math.floor(Math.random() * scripts.length)];
+        randomScript();
+
+        yesButton.addEventListener("click", function () {
+          window.location.href = "podwyzka.html";
+        });
+
+        // Skrypt 1: Zamiana tekstu przycisków i powrót do oryginału po opuszczeniu
+        function script1() {
+          yesButton.addEventListener("mouseover", swapText);
+          yesButton.addEventListener("mouseout", swapText);
+
+          function swapText() {
+            const yesText = yesButton.textContent;
+            yesButton.textContent = noButton.textContent;
+            noButton.textContent = yesText;
+          }
+        }
+
+        // Skrypt 2: Przesunięcie przycisku w losowe miejsce
+        function script2() {
+          yesButton.addEventListener("mouseover", function () {
+            const x = Math.floor(
+              Math.random() * (window.innerWidth - yesButton.offsetWidth)
+            );
+            const y = Math.floor(
+              Math.random() * (window.innerHeight - yesButton.offsetHeight)
+            );
+            yesButton.style.position = "absolute";
+            yesButton.style.left = `${x}px`;
+            yesButton.style.top = `${y}px`;
+          });
+        }
+
+        // Skrypt 3: Zniknięcie przycisku i ponowne pojawienie po opuszczeniu
+        function script3() {
+          yesButton.addEventListener("mouseover", function () {
+            yesButton.style.display = "none";
+            setTimeout(function () {
+              yesButton.style.display = "inline-block";
+            }, 3000); // Opóźnienie 3000ms (3 sekundy)
+          });
+        }
+      });
+    </script>
+  </body>
+</html>

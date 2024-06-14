@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Podwyżka</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background-color: #f0f0f0;
+      }
+
+      .container {
+        text-align: center;
+      }
+
+      input {
+        padding: 10px;
+        font-size: 16px;
+        margin-bottom: 10px;
+        width: 200px;
+      }
+
+      button {
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Podaj kwotę o jaką podnieść wynagrodzenie</h1>
+      <input type="text" id="salaryInput" placeholder="Kwota" />
+      <button id="submitBtn">Zatwierdź</button>
+    </div>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const submitBtn = document.getElementById("submitBtn");
+        const salaryInput = document.getElementById("salaryInput");
+
+        submitBtn.addEventListener("click", function (event) {
+          event.preventDefault();
+          const salaryValue = salaryInput.value;
+          if (salaryValue) {
+            window.location.href = `nagroda.html?salary=${salaryValue}`;
+          }
+        });
+
+        salaryInput.addEventListener("mouseleave", function () {
+          animateInputClear(salaryInput);
+        });
+
+        function animateInputClear(inputElement) {
+          const value = inputElement.value;
+          const interval = setInterval(function () {
+            if (inputElement.value.length > 0) {
+              inputElement.value = inputElement.value.slice(0, -1);
+            } else {
+              clearInterval(interval);
+            }
+          }, 100);
+        }
+      });
+    </script>
+  </body>
+</html>
